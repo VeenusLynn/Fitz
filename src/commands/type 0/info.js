@@ -15,18 +15,6 @@ module.exports = {
         .setDescription("Provides information about this server.")
     ),
   async execute(interaction) {
-    
-      // If the subcommand is "user", then reply with the user's information.
-      // If the subcommand is "server", then reply with the server's information.
-      // If the subcommand is neither, then reply with an error message.
-      // Hint: interaction.options.getSubcommand()
-      // Hint: interaction.user
-      // Hint: interaction.guild
-      // Hint: interaction.reply()
-      // Hint: interaction.reply({ embeds: [embed] })
-      // Hint: interaction.reply({ content: "Error: Invalid subcommand.", ephemeral: true })
-      // Hint: interaction.reply({ content: "Error: Invalid subcommand.", ephemeral: true, embeds: [embed] })
-      
       if (interaction.options.getSubcommand() == "user" ){
 
         await interaction.reply(`User: ${interaction.user} \n Username: ${interaction.user.username} \n Avatar: ${c()}`);
