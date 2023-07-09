@@ -12,5 +12,5 @@ const rest = new REST().setToken(TOKEN);
 // for global commands
 rest
   .put(Routes.applicationCommands(CLIENT_ID), { body: [] })
-  .then(() => console.log("Successfully deleted all application commands."))
+  .then(() => console.log("Successfully deleted all bot slash commands."))
   .catch(console.error);

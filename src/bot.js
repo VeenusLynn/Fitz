@@ -15,8 +15,10 @@ client.commands = new Collection();
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
-// loop through all the folders in the commands folder
+// loop through all the folders in the commands folder except the ignore folder
 for (const folder of commandFolders) {
+  if (folder == "ignore") continue;
+
   const commandsPath = path.join(foldersPath, folder);
   const commandFiles = fs
     .readdirSync(commandsPath)

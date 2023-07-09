@@ -7,13 +7,23 @@ dotenv.config();
 const TOKEN = process.env.TOKEN;
 const CLIENT_ID = process.env.CLIENT_ID;
 
+const rest = new REST().setToken(TOKEN);
+
+// deleteing all previous commands to refresh
+rest
+  .put(Routes.applicationCommands(CLIENT_ID), { body: [] })
+  .then(() => console.log("Successfully deleted all bot slash commands."))
+  .catch(console.error);
+
 const commands = [];
 
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
-  // Loop through all the folders in the commands folder
+  if (folder == "ignore") continue;
+
+  // Loop through all the folders in the commands folder (except the ignore folder)
   const commandsPath = path.join(foldersPath, folder);
   const commandFiles = fs
     .readdirSync(commandsPath)
@@ -32,8 +42,6 @@ for (const folder of commandFolders) {
     }
   }
 }
-
-const rest = new REST().setToken(TOKEN);
 
 (async () => {
   try {
